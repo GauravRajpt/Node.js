@@ -1,4 +1,5 @@
-const fs= require("fs").writeFileSync;
-fs("hello3", "hello again ")
-console.log(__dirname);
-console.log(__filename)
+const http= require("http");
+http.createServer((req, res)=>{
+    res.write("hello world");
+    res.end()
+}).listen(4300);
