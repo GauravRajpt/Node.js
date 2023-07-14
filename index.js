@@ -1,23 +1,15 @@
-/*show file list*/
-
-//create a folder with name files
-
-// use path module
-
 const fs= require('fs');
 
-const path= require('path')
-const joinedPath= path.join(__dirname, "files");
-console.log(joinedPath)
+const input = process.argv;
 
-// for(let i=0; i<5; i++){
-//     fs.writeFileSync(joinedPath+"/hello"+i,"this is file")
-// }
 
-//read the file
-
-fs.readdir(joinedPath,(err,files)=>{
-files.forEach((item)=>{
-    console.log(item)
-})
-})
+//create the file
+if(input[2]=='add'){
+fs.writeFileSync(input[3],input[4]);
+}
+else if(input[2]=='remove'){
+    fs.unlinkSync(input[3])
+}
+else{
+    console.log('invalid command')
+}
