@@ -1,28 +1,12 @@
-const fs= require('fs');
+let a=20;
+let b=0;
+//handling ansynchronus data
 
-const input = process.argv;
+const waitingData= new Promise((resolve,reject)=>{
+    resolve(30)
+})
 
-
-const path= require('path');
-const dirpath= path.join(__dirname,'crud');
-const filepath= dirpath+'/apple.txt';
-//create
-//fs.writeFileSync(filepath,"this is text file")
-
-//read
-// fs.readFile(filepath,'utf8',(err,item)=>{
-//     console.log(item)
-// })
-
-// update
-// fs.appendFile(filepath,"file name is apple.txt",(err)=>{
-//     if(!err) console.log("file is updated")
-// });
-
-//rename
-// fs.rename(filepath, `${dirpath}/fruit.txt`, (err)=>{
-//     if(!err) console.log("filename updated");
-// });
-
-//delete
-fs.unlinkSync(`${dirpath}/fruit.txt`);
+waitingData.then((data)=>{
+    b=data;
+    console.log(a+b);
+})
