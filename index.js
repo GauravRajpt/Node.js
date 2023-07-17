@@ -1,12 +1,10 @@
-let a=20;
-let b=0;
-//handling ansynchronus data
-
-const waitingData= new Promise((resolve,reject)=>{
-    resolve(30)
+const express= require('express');
+const app=express();
+//'' is path 
+app.get('',(req,res)=>{
+    res.send('hello this is home page');
 })
-
-waitingData.then((data)=>{
-    b=data;
-    console.log(a+b);
+app.get('/about',(req,res)=>{
+    res.send('hello this is about page')
 })
+app.listen(5000);
