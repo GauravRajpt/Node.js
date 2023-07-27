@@ -1,18 +1,8 @@
-const express= require('express');
-const app=express();
-//'' is path 
-// app.get('',(req,res)=>{
-//     res.send('hello this is home page');
-// })
-// app.get('/about',(req,res)=>{
-//     res.send('hello this is about page')
-// })
-// app.listen(5000);
+const express= require('express')
+const path= require('path')
+const app= express();
+const publicpath= path.join(__dirname,'public');
 
-//get data from query
+app.use(express.static(publicpath));
 
-app.get('',(req, res)=>{
-    console.log(req.query)
-    res.send('hello '+ req.query.name)
-});
-app.listen(5000);
+app.listen(5000)
