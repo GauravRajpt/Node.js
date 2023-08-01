@@ -16,12 +16,18 @@ app.get('/profile',(req,res)=>{
     };
     res.render('profile',{user})
 })
+app.get('/about',(req,res)=>{
+    const user={
+        name:'gaurav',
+        city:'haridwar',
+        skills:['html','css','js','node']
+    };
+    res.render('about',{user})
+})
 app.get('',(req,res)=>{
     res.sendFile(`${publicpath}/index.html`)
 });
-app.get('/about',(req,res)=>{
-    res.sendFile(`${publicpath}/about.html`)
-});
+
 app.get('*',(req,res)=>{
     res.sendFile(`${publicpath}/nopage.html`)
 });
