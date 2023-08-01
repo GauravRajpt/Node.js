@@ -12,6 +12,7 @@ app.get('/profile',(req,res)=>{
     const user={
         name:'gaurav',
         city:'haridwar',
+        skills:['html','css','js','node']
     };
     res.render('profile',{user})
 })
