@@ -8,6 +8,19 @@ const publicpath= path.join(__dirname,'public');
 
 app.set('view engine','ejs');
 
+const reqFilter= (req, res, next)=>{
+ if(!req.query.age){
+    res.send('please provide age')
+ }
+ else if(req.query.age<18){
+    res.send('you cannot access this age')
+ }
+ else{
+    next()
+ }
+}
+
+app.use(reqFilter)
 app.get('/profile',(req,res)=>{
     const user={
         name:'gaurav',
