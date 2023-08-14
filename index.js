@@ -1,55 +1,13 @@
-const express= require('express')
-const path= require('path')
-const route= express.Router();
-const app= express();
+const {MongoClient}= require('mongodb');
+const url='mongodb://127.0.0.1:27017';
+const client= new MongoClient(url);
 
-const publicpath= path.join(__dirname,'public');
+async function getData(){
+    let result=  await client.connect();
+    let db= result.db('e-com');
+    let collection= db.collection('bikes');
+    let response= await collection.find({}).toArray();
+    console.log(response);
 
-// app.use(express.static(publicpath));
-
-
-app.set('view engine','ejs');
-
-const reqFilter= (req, res, next)=>{
- if(!req.query.age){
-    res.send('please provide age')
- }
- else if(req.query.age<18){
-    res.send('you cannot access this age')
- }
- else{
-    next()
- }
 }
-app.get('',(req,res)=>{
-    res.sendFile(`${publicpath}/index.html`)
-});
-
-
-route.use(reqFilter)
-// app.use(reqFilter)
-route.get('/profile',(req,res)=>{
-    const user={
-        name:'gaurav',
-        city:'haridwar',
-        skills:['html','css','js','node']
-    };
-    res.render('profile',{user})
-})
-route.get('/about',(req,res)=>{
-    const user={
-        name:'gaurav',
-        city:'haridwar',
-        skills:['html','css','js','node']
-    };
-    res.render('about',{user})
-})
-// app.get('*',(req,res)=>{
-//     res.sendFile(`${publicpath}/nopage.html`)
-// });
-app.use('/',route)
-
-
-
-
-app.listen(5000)
+getData();
