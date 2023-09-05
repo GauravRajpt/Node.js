@@ -5,5 +5,24 @@
     "express": "^4.18.2",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3"
-  }
+  },
+  "type":"commonjs",
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GauravRajpt/Node.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GauravRajpt/Node.js/issues"
+  },
+  "homepage": "https://github.com/GauravRajpt/Node.js#readme",
+  "description": ""
 }
