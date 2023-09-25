@@ -1,18 +1,23 @@
-const express= require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors'); // Import the cors package
 
+const app = express();
+const port = 4000; // Assuming your API is running on port 4000
 
-// const path= require('path').resolve("./index.html");
-// console.log(path)
+// Middleware to enable CORS
+app.use(cors());
 
-const app= express();
-// console.log(__filename)
+// Middleware to parse JSON in the request body
+app.use(bodyParser.json());
 
-app.use(express.static(__dirname+"/public"))
+// Define a POST route to accept data in req.body
+app.post('/api/data', (req, res) => {
+  const requestData = req.body;
+  res.json({ message: 'Data received successfully', data: requestData });
+});
 
-app.get('/about',(req,res)=>{
-    // res.send(req.query.id)
-    // http://localhost:5000/about?id=33
-    res.sendFile(__dirname+"/public/about.html")
-})
-
-app.listen(5000);
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
