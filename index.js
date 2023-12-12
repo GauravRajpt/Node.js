@@ -14,9 +14,18 @@ app.use(bodyParser.json());
 // Define a POST route to accept data in req.body
 app.post('/api/data', (req, res) => {
   const requestData = req.body;
+  console.log(requestData);
   res.json({ message: 'Data received successfully', data: requestData });
 });
 
+export const signUp = async (userData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/signup`, userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 // Start the server
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
