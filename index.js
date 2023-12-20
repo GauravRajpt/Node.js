@@ -1,57 +1,30 @@
-
-const express= require("express");
+const express= require("express")
 
 const app= express();
+// app.use(bodyParser.json());
+app.use(express.json());
+const authRouter= express.Router();
+app.use('/',authRouter);
 
-app.use(express.json())
+express.static(__dirname+"/public")
 
-
-const user=[
-{
-  name:"abhishke",
-  id:"1"
-}
-]
-
-
-
-app.listen(3000, ()=>{
-  console.log("hiii")
-})
-
-
-
-
-const userRouter= express.Router();
-app.use("/user",userRouter)
-
-userRouter
-.route("/")
+authRouter
+.route('/')
 .get(getUser)
+
+authRouter
+.route('/user')
 .post(postUser)
 
-function getUser(req,res){
+function postUser(req, res){
+  console.log(req.body)
+    res.send("hello")
     
-  // user.user= req.user;
-  console.log(user)
-  res.send(
-      {
-          "message":"data recieved succesfully",
-          "user":user
-      }
-  )
-
 }
 
-function postUser(req,res){
-    
-  user.push = req.body
-  console.log(user)
-  res.send(
-      {
-          "message":"data recieved succesfully",
-          "user":user
-      }
-  )
 
+function getUser(req, res){
+  res.sendFile("/public/index.html",{root:__dirname})
 }
+app.listen(3000)
+
