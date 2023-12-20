@@ -1,23 +1,57 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors'); // Import the cors package
 
-const app = express();
-const port = 4000; // Assuming your API is running on port 4000
+const express= require("express");
 
-// Middleware to enable CORS
-app.use(cors());
+const app= express();
 
-// Middleware to parse JSON in the request body
-app.use(bodyParser.json());
+app.use(express.json())
 
-// Define a POST route to accept data in req.body
-app.post('/api/data', (req, res) => {
-  const requestData = req.body;
-  res.json({ message: 'Data received successfully', data: requestData });
-});
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+const user=[
+{
+  name:"abhishke",
+  id:"1"
+}
+]
+
+
+
+app.listen(3000, ()=>{
+  console.log("hiii")
+})
+
+
+
+
+const userRouter= express.Router();
+app.use("/user",userRouter)
+
+userRouter
+.route("/")
+.get(getUser)
+.post(postUser)
+
+function getUser(req,res){
+    
+  // user.user= req.user;
+  console.log(user)
+  res.send(
+      {
+          "message":"data recieved succesfully",
+          "user":user
+      }
+  )
+
+}
+
+function postUser(req,res){
+    
+  user.push = req.body
+  console.log(user)
+  res.send(
+      {
+          "message":"data recieved succesfully",
+          "user":user
+      }
+  )
+
+}
